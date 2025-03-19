@@ -68,7 +68,6 @@ async function handleCreateUrl() {
     } catch (err) {
         console.error(err);
 
-        // Handle errors
         if (err.response) {
             errorMessage.textContent = `Error: ${err.response.data.message || "Something went wrong"
                 }`;
