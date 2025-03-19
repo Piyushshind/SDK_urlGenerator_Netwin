@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate SDK URL</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Liveliness Verification SDK</h1>
+            <p class="subtitle">
+                Generate a unique verification URL for your users
+            </p>
+        </header>
+
+        <main>
+            <section class="generator-section">
+                <button id="createUrlButton" class="primary-button">
+                    <span class="button-text">Generate URL</span>
+                    <span class="button-icon">→</span>
+                </button>
+
+                <div id="loadingMessage" class="loading-container">
+                    <div class="loading-dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <p>Generating URL, please wait...</p>
+                </div>
+
+                <p id="errorMessage" class="error-message"></p>
+            </section>
+
+            <section id="videoUrlContainer" class="result-section">
+                <h2>Your SDK URL is ready</h2>
+                <div class="url-display">
+                    <a id="videoUrlLink" class="url-link" target="_blank" rel="noopener noreferrer"></a>
+                </div>
+                <div class="instructions">
+                    <p>
+                        Click the link above or share it with your users to start the
+                        verification process.
+                    </p>
+                    <p class="warning">
+                        <strong>Note:</strong> This URL will expire after 1 hours.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Liveliness Verification SDK &copy; 2023</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
