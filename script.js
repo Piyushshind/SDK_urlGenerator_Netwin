@@ -43,7 +43,7 @@ async function handleCreateUrl() {
     try {
         // First API call - Login
         const loginResponse = await axios.post(
-            "http://192.168.43.208/api/v2/patrons/login",
+            "https://192.168.43.208/api/v2/patrons/login",
             usersCredentials,
         );
         console.log("loginResponse :- ", loginResponse);
@@ -53,7 +53,7 @@ async function handleCreateUrl() {
 
         // Second API call - Get URL
         const urlResponse = await axios.post(
-            `http://192.168.43.208/api/v2/patrons/${userId}/getUrl`,
+            `https://192.168.43.208/api/v2/patrons/${userId}/getUrl`,
             requestBody,
             { headers: { Authorization: id } },
         );
