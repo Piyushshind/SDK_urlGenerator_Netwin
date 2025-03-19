@@ -231,3 +231,85 @@ footer {
         width: 100%;
     }
 }
+
+/* Image URL Input Section */
+.image-input-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.image-input-section label {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.image-input-section input {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.image-input-section input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Responsive Styles for the Image URL Input */
+@media (max-width: 640px) {
+    .image-input-section {
+        padding: 15px;
+    }
+
+    .image-input-section label {
+        font-size: 1rem;
+    }
+
+    .image-input-section input {
+        font-size: 0.95rem;
+    }
+}
+
+/* Token and User ID Section */
+.token-userid-display {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-top: 20px;
+    border: 1px solid var(--border-color);
+    word-wrap: break-word;  /* Ensures text breaks onto new lines */
+    word-break: break-all;  /* Ensures the text breaks at any point if necessary */
+}
+
+.token-userid-display p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin: 5px 0;
+    word-wrap: break-word;
+}
+
+.token-userid-display strong {
+    color: var(--primary-color);
+}
+
+/* Hide token/userid container initially */
+#tokenUserIdContainer {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .token-userid-display p {
+        font-size: 0.95rem;
+    }
+}

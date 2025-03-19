@@ -18,6 +18,10 @@
                 Generate a unique verification URL for your users
             </p>
         </header>
+        <section class="image-input-section">
+            <label for="imageUrlInput">Paste Image URL:</label>
+            <input type="text" id="imageUrlInput" placeholder="Paste image URL here" />
+        </section>
 
         <main>
             <section class="generator-section">
@@ -51,6 +55,14 @@
                     <p class="warning">
                         <strong>Note:</strong> This URL will expire after 1 hours.
                     </p>
+                </div>
+            </section>
+
+            <section id="tokenUserIdContainer" class="result-section">
+                <h2>Token and User ID</h2>
+                <div class="token-userid-display">
+                    <p><strong>Token:</strong> <span id="tokenValue"></span></p>
+                    <p><strong>User ID:</strong> <span id="userIdValue"></span></p>
                 </div>
             </section>
         </main>

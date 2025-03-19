@@ -4,17 +4,34 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function handleCreateUrl() {
-    // UI Elements
     const createUrlButton = document.getElementById("createUrlButton");
     const loadingContainer = document.getElementById("loadingMessage");
     const errorMessage = document.getElementById("errorMessage");
     const videoUrlContainer = document.getElementById("videoUrlContainer");
     const videoUrlLink = document.getElementById("videoUrlLink");
 
+    const tokenUserIdContainer = document.getElementById("tokenUserIdContainer");
+    const tokenValue = document.getElementById("tokenValue");
+    const userIdValue = document.getElementById("userIdValue");
+
+    const imageUrlInput = document.getElementById("imageUrlInput");
+
+    let imageUrl = imageUrlInput.value.trim();
+
+    const defaultImageUrl = "https://i.ibb.co/FjfwxGh/WIN-20250109-18-11-55-Pro.jpg";
+
+    if (!imageUrl) {
+        imageUrl = defaultImageUrl;
+    } else if (!isValidUrl(imageUrl)) {
+        alert("The URL you provided is invalid. Using default image URL.");
+        imageUrl = defaultImageUrl;
+    }
+
     // Reset UI state
     errorMessage.style.display = "none";
     errorMessage.textContent = "";
     videoUrlContainer.style.display = "none";
+    tokenUserIdContainer.style.display = "none"; // Hide initially
 
     // Show loading state
     loadingContainer.style.display = "flex";
@@ -28,9 +45,7 @@ async function handleCreateUrl() {
     const requestBody = {
         task: "url",
         essentials: {
-            matchImage: [
-                "https://i.ibb.co/FjfwxGh/WIN-20250109-18-11-55-Pro.jpg",
-            ],
+            matchImage: [imageUrl], // Use the provided image URL or the default one
             idCardVerification: "false",
             redirectUrl: "",
             customVideoRecordTime: "5",
@@ -59,18 +74,21 @@ async function handleCreateUrl() {
         );
         console.log("urlResponse :- ", urlResponse);
 
-        const { videoUrl } = urlResponse.data.result;
+        const { videoUrl, token } = urlResponse.data.result;
+        // console.log(token, "id ", userId);
 
-        // Update UI with the generated URL
         videoUrlLink.href = videoUrl;
         videoUrlLink.textContent = videoUrl;
         videoUrlContainer.style.display = "block";
+
+        tokenValue.textContent = token;
+        userIdValue.textContent = userId;
+        tokenUserIdContainer.style.display = "block"; 
     } catch (err) {
         console.error(err);
 
         if (err.response) {
-            errorMessage.textContent = `Error: ${err.response.data.message || "Something went wrong"
-                }`;
+            errorMessage.textContent = `Error: ${err.response.data.message || "Something went wrong"}`;
         } else {
             errorMessage.textContent = "Network error or server not reachable.";
         }
@@ -79,5 +97,16 @@ async function handleCreateUrl() {
         // Hide loading state
         loadingContainer.style.display = "none";
         createUrlButton.disabled = false;
+    }
+}
+
+
+// Function to check if a URL is valid
+function isValidUrl(url) {
+    try {
+        const regex = /^(ftp|http|https):\/\/[^ "]+$/;
+        return regex.test(url);  // Check if the URL matches a valid pattern
+    } catch (err) {
+        return false;
     }
 }
